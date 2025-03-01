@@ -17,9 +17,6 @@ class GradeController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -31,15 +28,19 @@ class GradeController extends Controller
     public function store(StoreGradeRequest $request)
     {
         $validated = $request->validated();
+        if ($validated['grade'] > 3) {
+            $status = 'Failed';
+        } else {
+            $status = 'Passed';
+        }
         $grade = Grade::create([
             'grade' => $validated['grade'],
-            'status' => "Passed",
+            'status' => $status,
         ]);
 
-        // Step 2: Update the enrollment with the grade_id
         Enrollment::where('id', $validated['enrollment_id'])
             ->update(['grade_id' => $grade->id]);
-        return redirect('students')->with('success', 'Student added Successfully');
+        return redirect('students')->with('success', 'Student graded Successfully');
     }
 
     /**
@@ -66,10 +67,19 @@ class GradeController extends Controller
      */
     public function update(UpdateGradeRequest $request, Grade $grade)
     {
-        //
+
+        $validated = $request->validated();
+        if ($validated['grade'] > 3) {
+            $validated['status'] = 'Failed';
+        } else {
+            $validated['status'] = 'Passed';
+        }
+        $grade->update($validated);
+
+        return redirect('students')->with('success', 'Student graded Successfully Updated');
     }
     public function destroy(Grade $grade)
     {
-        //
+        dd($grade);
     }
 }

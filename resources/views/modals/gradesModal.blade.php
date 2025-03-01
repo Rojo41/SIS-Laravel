@@ -58,6 +58,7 @@
                 'z-index': '1040',
                 'display': 'block'
             });
+
             $("#gradeForm").attr("action", actionUrl);
             $('.modal-backdrop').css('z-index', '1039');
             $('#triggerAddGradeModal').css('z-index', '2050').modal('show');
@@ -73,8 +74,9 @@
             var studentId = $("#student_id").text();
             var row = $(this).closest("tr");
             var subjectCode = row.find(".subjectCode").text();
+            var gradeId = row.find(".gradeId").text();
             var grade = row.find(".subjectGrade").text();
-
+            var actionUrl = `/grade/${gradeId}`
             if (grade === '') {
                 return;
             }
@@ -82,8 +84,13 @@
                 'z-index': '1040',
                 'display': 'block'
             });
+
             $('.modal-backdrop').css('z-index', '1039');
             $('#triggerAddGradeModal').css('z-index', '2050').modal('show');
+            $("#gradeForm").append(
+                '<input type="hidden" name="_method" value="PUT">'
+            );
+            $("#gradeForm").attr("action", actionUrl);
             $('#studentIdGrade').val(studentId);
             $("#studentIdGrade").prop("disabled", true);
             $('#sCode').val(subjectCode);
@@ -98,6 +105,7 @@
             $('#sCode').val("");
             $('#grade').val('');
             $('#gradeModalTitle').text('')
+            $("#subjectForm input[name='_method']").remove();
         });
     });
 </script>

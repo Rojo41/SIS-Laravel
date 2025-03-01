@@ -13,6 +13,7 @@
                         <label for="studentId">Student ID</label>
                     </div>
                     <input hidden class="form-control" name="enrollment_id" id="enrollment_id" placeholder="123">
+                    <input hidden class="form-control" name="grade_id" id="grade_id" placeholder="123">
                     <div class="form-floating mb-3" id="studentIdGroup">
                         <input type="num" class="form-control" name="subject_code" id="sCode" placeholder="123">
                         <label for="sCode">Subject code</label>

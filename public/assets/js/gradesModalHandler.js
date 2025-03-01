@@ -22,20 +22,31 @@ $(document).ready(function () {
                                 <td hidden class="enrollmentId">${
                                     enrollment.id
                                 }</td>
+                                <td hidden class="gradeId">${
+                                    enrollment.grade.id
+                                }</td>
                                 <td class="subjectCode">${
                                     enrollment.subject.code
                                 }</td>
                                 <td>${enrollment.subject.name}</td>
-                                <td class="subjectGrade">${
+                                <td class="subjectGrade fw-bold">${
                                     enrollment.grade
                                         ? enrollment.grade.grade
                                         : ""
                                 }</td>
-                                <td>${
-                                    enrollment.grade
-                                        ? enrollment.grade.status
-                                        : "INC"
-                                }</td>
+                                <td class="${
+                                    enrollment.grade &&
+                                    enrollment.grade.status === "Passed"
+                                        ? "text-success"
+                                        : "text-danger"
+                                } fw-bold">
+                                    ${
+                                        enrollment.grade
+                                            ? enrollment.grade.status
+                                            : "INC"
+                                    }
+                                    </td>
+
                                 <td> 
                                  <a href="#" id="addGradeButton" style="font-size: 1.5rem;text-decoration:none; color: green;cursur:pointer; "><span class="mdi mdi-pencil-plus" ></span>
                                 </a>

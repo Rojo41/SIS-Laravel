@@ -32,8 +32,11 @@
                                 <td>{{ $enrollment->subject->code }}</td>
                                 <td>{{ $enrollment->subject->name }}</td>
                                 <td>{{ $enrollment->subject->units }}</td>
-                                <td>{{ $enrollment->grade->grade ?? '' }}</td>
-                                <td>{{ $enrollment->grade->status ?? 'INC' }}</td>
+                                <td class="fw-bold">{{ $enrollment->grade->grade ?? '' }}</td>
+                                <td class="{{ $enrollment->grade->status == 'Passed' ? 'text-success' : 'text-danger' }} fw-bold">
+                                    {{ $enrollment->grade->status ?? 'INC' }}
+                                </td>
+
                             </tr>
                             @endforeach
                             @if ($enrollments->isEmpty())
