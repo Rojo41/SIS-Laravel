@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Http\Requests\StoreGradeRequest;
 use App\Http\Requests\UpdateGradeRequest;
+use App\Models\Enrollment;
 
 class GradeController extends Controller
 {
@@ -29,7 +30,16 @@ class GradeController extends Controller
      */
     public function store(StoreGradeRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $grade = Grade::create([
+            'grade' => $validated['grade'],
+            'status' => "Passed",
+        ]);
+
+        // Step 2: Update the enrollment with the grade_id
+        Enrollment::where('id', $validated['enrollment_id'])
+            ->update(['grade_id' => $grade->id]);
+        return redirect('students')->with('success', 'Student added Successfully');
     }
 
     /**

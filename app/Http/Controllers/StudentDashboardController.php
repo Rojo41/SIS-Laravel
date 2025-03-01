@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grade;
-use Illuminate\Container\Attributes\Auth;
-use Illuminate\Http\Request;
+use App\Models\Enrollment;
 
 class StudentDashboardController extends Controller
 {
@@ -15,7 +13,9 @@ class StudentDashboardController extends Controller
         if (!$student) {
             return redirect()->route('login')->with('error', 'You must be logged in.');
         }
-        $grades = Grade::where('student_id', $student->id)->with('subject')->get();
-        return view('studentsViews.index', compact('grades'));
+        $enrollments = Enrollment::where('student_id', $student->id)
+            ->with(['subject', 'grade'])
+            ->get();
+        return view('studentsViews.index', compact('enrollments'));
     }
 }

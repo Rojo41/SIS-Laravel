@@ -18,9 +18,7 @@ class EnrollmentController extends Controller
     public function getSubjects($student_id)
     {
         $enrolledSubjects = Enrollment::where('student_id', $student_id)->pluck('subject_id');
-
         $subjects = Subject::whereNotIn('id', $enrolledSubjects)->get();
-
         return response()->json([
             'subjects' => $subjects,
         ]);
@@ -49,11 +47,6 @@ class EnrollmentController extends Controller
                 'subject_id' => $subjectId,
                 'instructor' => 'TBD',
             ]);
-            Grade::create([
-                'student_id' => $studentId,
-                'subject_id' => $subjectId,
-
-            ]);
         }
 
         return redirect()->back()->with('success', 'Student enrolled successfully in selected subjects!');
@@ -64,9 +57,11 @@ class EnrollmentController extends Controller
      */
     public function show($student_id)
     {
-        $enrollments = Enrollment::with(['student', 'subject'])
+
+        $enrollments = Enrollment::with(['student', 'subject', 'grade'])
             ->where('student_id', $student_id)
             ->get();
+
         return response()->json($enrollments);
     }
 

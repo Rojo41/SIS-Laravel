@@ -6,7 +6,7 @@ $(document).ready(function () {
         console.log(`Fetching grades for student ID: ${studentId}`);
 
         $.ajax({
-            url: `/grade/${studentId}`,
+            url: `/student/enroll/${studentId}`,
             type: "GET",
             success: function (data) {
                 console.log(data);
@@ -19,18 +19,21 @@ $(document).ready(function () {
                         $("#gradeList").append(`
                             <tr>
                      
+                                <td hidden class="enrollmentId">${
+                                    enrollment.id
+                                }</td>
                                 <td class="subjectCode">${
                                     enrollment.subject.code
                                 }</td>
                                 <td>${enrollment.subject.name}</td>
                                 <td class="subjectGrade">${
-                                    enrollment.grade !== null
-                                        ? enrollment.grade
+                                    enrollment.grade
+                                        ? enrollment.grade.grade
                                         : ""
                                 }</td>
                                 <td>${
-                                    enrollment.status !== null
-                                        ? enrollment.status
+                                    enrollment.grade
+                                        ? enrollment.grade.status
                                         : "INC"
                                 }</td>
                                 <td> 

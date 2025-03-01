@@ -27,16 +27,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($grades as $grade)
+                            @foreach ($enrollments as $enrollment)
                             <tr>
-                                <td>{{ $grade->subject->code }}</td>
-                                <td>{{ $grade->subject->name }}</td>
-                                <td>{{ $grade->subject->units }}</td>
-                                <td>{{ $grade->grade ?? '' }}</td>
-                                <td>{{ $grade->status ?? 'INC' }}</td>
+                                <td>{{ $enrollment->subject->code }}</td>
+                                <td>{{ $enrollment->subject->name }}</td>
+                                <td>{{ $enrollment->subject->units }}</td>
+                                <td>{{ $enrollment->grade->grade ?? '' }}</td>
+                                <td>{{ $enrollment->grade->status ?? 'INC' }}</td>
                             </tr>
                             @endforeach
-                            @if ($grades->isEmpty())
+                            @if ($enrollments->isEmpty())
                             <tr>
                                 <td colspan="5" class="text-center">No grades available.</td>
                             </tr>

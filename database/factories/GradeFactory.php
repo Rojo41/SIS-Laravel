@@ -19,10 +19,8 @@ class GradeFactory extends Factory
     public function definition(): array
     {
         return [
-            'grade' => null,
-            'status' => '',
-            'student_id' => Student::inRandomOrder()->first()->id ?? Student::factory(),
-            'subject_id' => Subject::inRandomOrder()->first()->id ?? Subject::factory(),
+            'grade' => $this->float(),
+            'status' => $this->name(),
         ];
     }
 }

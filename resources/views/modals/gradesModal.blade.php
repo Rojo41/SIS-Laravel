@@ -46,6 +46,10 @@
             var studentId = $("#student_id").text();
             var row = $(this).closest("tr");
             var grade = row.find(".subjectGrade").text();
+            var enrollmentId = row.find(".enrollmentId").text();
+            var subjectCode = row.find(".subjectCode").text();
+            console.log("ahsdjkfhajksdf: ", enrollmentId);
+            var actionUrl = "/grade"
             if (grade !== '') {
                 return;
             }
@@ -54,9 +58,14 @@
                 'z-index': '1040',
                 'display': 'block'
             });
+            $("#gradeForm").attr("action", actionUrl);
             $('.modal-backdrop').css('z-index', '1039');
             $('#triggerAddGradeModal').css('z-index', '2050').modal('show');
-            $('#studentId').text(studentId);
+            $('#studentIdGrade').val(studentId);
+            $('#enrollment_id').val(enrollmentId);
+            $("#sCode").prop("disabled", true);
+            $("#studentIdGrade").prop("disabled", true);
+            $('#sCode').val(subjectCode);
             $('#gradeModalTitle').text('Add Grade')
         });
 
@@ -66,6 +75,9 @@
             var subjectCode = row.find(".subjectCode").text();
             var grade = row.find(".subjectGrade").text();
 
+            if (grade === '') {
+                return;
+            }
             $('#triggerGradesModal').css({
                 'z-index': '1040',
                 'display': 'block'
@@ -83,9 +95,7 @@
         $('#triggerAddGradeModal').on('hidden.bs.modal', function() {
             $('#triggerGradesModal').css('z-index', '1050');
             $('#studentIdGrade').val("");
-            $("#studentIdGrade").prop("disabled", false);
             $('#sCode').val("");
-            $("#sCode").prop("disabled", false);
             $('#grade').val('');
             $('#gradeModalTitle').text('')
         });

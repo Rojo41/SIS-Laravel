@@ -11,7 +11,7 @@ class StoreGradeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreGradeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'grade' => 'required|numeric',
+            'enrollment_id' => 'required|exists:enrollments,id'
         ];
     }
 }
