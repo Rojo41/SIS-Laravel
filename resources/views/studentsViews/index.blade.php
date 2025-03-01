@@ -33,9 +33,10 @@
                                 <td>{{ $enrollment->subject->name }}</td>
                                 <td>{{ $enrollment->subject->units }}</td>
                                 <td class="fw-bold">{{ $enrollment->grade->grade ?? '' }}</td>
-                                <td class="{{ $enrollment->grade->status == 'Passed' ? 'text-success' : 'text-danger' }} fw-bold">
-                                    {{ $enrollment->grade->status ?? 'INC' }}
+                                <td class="{{ optional($enrollment->grade)->status == 'Passed' ? 'text-success' : 'text-danger' }} fw-bold">
+                                    {{ optional($enrollment->grade)->status ?? 'INC' }}
                                 </td>
+
 
                             </tr>
                             @endforeach

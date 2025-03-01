@@ -80,6 +80,11 @@ class GradeController extends Controller
     }
     public function destroy(Grade $grade)
     {
-        dd($grade);
+        // Step 1: Remove the grade_id from enrollments
+        Enrollment::where('grade_id', $grade->id)->update(['grade_id' => null]);
+
+        // Step 2: Delete the grade from the grades table
+        $grade->delete();
+        return redirect('students')->with('success', 'Student grade deleted Successfully ');
     }
 }

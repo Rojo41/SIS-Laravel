@@ -20,7 +20,6 @@ Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])
     ->middleware(['auth:student'])
     ->name('student.dashboard');
 
-
 Route::resource('/students', StudentController::class)->middleware(['auth:web', 'verified']);
 Route::resource('/subjects', SubjectController::class)->middleware(['auth:web', 'verified']);
 Route::resource('/grade', GradeController::class)->middleware(['auth:web', 'verified']);
