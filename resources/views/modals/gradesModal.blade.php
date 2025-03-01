@@ -61,6 +61,5 @@
                 form.submit();
             }
         });
-
     }
 </script>
