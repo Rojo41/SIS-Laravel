@@ -72,8 +72,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        $enroll = Enrollment::where("student_id", $subject->id)->get();
-        if ($enroll) {
+        if (Enrollment::where("subject_id", $subject->id)->exists()) {
             return redirect('subjects')->with('error', 'There are students currently enrolled to this subject!');
         }
         $subject->delete();

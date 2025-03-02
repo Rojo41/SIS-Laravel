@@ -38,8 +38,7 @@ class StudentController extends Controller
     }
     public function destroy(Student $student)
     {
-        $enrolled = Enrollment::where("student_id", $student->id)->get();
-        if ($enrolled) {
+        if (Enrollment::where("student_id", $student->id)->exists()) {
             return redirect('students')->with('error', 'Student is currently enrolled and cannot be deleted!');
         }
         $student->delete();
