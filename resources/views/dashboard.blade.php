@@ -1,5 +1,5 @@
 @extends('layouts.mainlayout')
-
+@section('title', 'Dashboard')
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">

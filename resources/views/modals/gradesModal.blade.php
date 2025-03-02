@@ -2,10 +2,21 @@
     <div class="modal-dialog modal-lg" style="max-width: 900px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Student Grades Information</h5>
+                <h5 class="modal-title fw-bold fs-5" id="modalTitle">Student Grades Information</h5>
                 <button type="button" class="btn-close close" data-bs-dismiss="modal" id="closeModal" aria-label="Close"></button>
             </div>
+
             <div class="modal-body">
+                <div id="informationCOntainer" class="d-flex p-1 mb-2 justify-content-start" style="border-bottom: 2px solid gray;">
+                    <div style="flex:1;">
+                        <p style="font-size:16px; font-weight:bold">ID: <span id="sID" style="font-weight:normal;margin-left:5px"></span></p>
+                        <p style="font-size:16px; font-weight:bold">Name: <span id="sName" style="font-weight:normal;margin-left:5px"> </span></p>
+                    </div>
+                    <div style="flex:1;">
+                        <p style="font-size:16px; font-weight:bold">Email: <span id="sEmail" style="font-weight:normal;margin-left:5px"></span></p>
+                        <p style="font-size:16px;  font-weight:bold">Course: <span id="sAddress" style="font-weight:normal;margin-left:5px"> </span></p>
+                    </div>
+                </div>
                 <div style="max-height: 500px; overflow-y:scroll; scrollbar-width:none">
                     <table class="table">
                         <colGroup>

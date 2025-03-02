@@ -1,7 +1,19 @@
 $(document).ready(function () {
     $("#triggerGradesModal").on("show.bs.modal", function (event) {
         var studentId = $("#student_id").text();
+        var sName = $("#student_name").text();
+        var sEmail = $("#email").text();
+        var sAddress = $("#student_address").text();
         console.log(`Fetching grades for student ID: ${studentId}`);
+        $("#sID").text("");
+        $("#sName").text("");
+        $("#sEmail").text("");
+        $("#sAddress").text("");
+
+        $("#sID").text(studentId);
+        $("#sName").text(sName);
+        $("#sEmail").text(sEmail);
+        $("#sAddress").text(sAddress);
 
         $.ajax({
             url: `/student/enroll/${studentId}`,

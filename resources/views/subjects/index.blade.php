@@ -1,5 +1,5 @@
 @extends('layouts.mainlayout')
-
+@section('title', 'Subject List')
 @section('content')
 
 <div class="main-panel">

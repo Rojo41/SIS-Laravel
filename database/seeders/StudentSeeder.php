@@ -13,12 +13,6 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        Student::factory(40)->create([
-            'name' => fn() => fake()->name(),
-            'email' => fn()  =>  fake()->unique()->safeEmail(),
-            'address' => fn()  => fake()->address(),
-            'course' => fn() => fake()->word(),
-            'password' => fn() => fake()->word(),
-        ]);
+        Student::factory(10)->create();
     }
 }

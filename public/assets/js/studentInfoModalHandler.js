@@ -6,10 +6,8 @@ $(document).ready(function () {
         var studentEmail = button.data("email");
         var course = button.data("course");
 
-        $("#student_id, #student_name, #email, #student_address").text(""); // Clear student details
-        $("#enrollmentList").empty(); // Clear enrollment table
-
-        // Only set student info if it's not already set
+        $("#student_id, #student_name, #email, #student_address").text("");
+        $("#enrollmentList").empty();
         if (!$("#student_id").text().trim()) {
             $("#student_id").text(studentId);
             $("#student_name").text(studentName);
@@ -23,8 +21,6 @@ $(document).ready(function () {
             type: "GET",
             success: function (data) {
                 console.log(data);
-
-                // Prevent clearing enrollments when reopening modal
                 if ($("#enrollmentList").children().length === 0) {
                     if (data.length > 0) {
                         data.forEach(function (enrollment) {
@@ -32,22 +28,27 @@ $(document).ready(function () {
                             $("#IdToDelete").attr("action", actionUrl);
                             $("#enrollmentList").append(`
                                 <tr>
-                                    <td>${enrollment.id}</td>
-                                    <td>${enrollment.subject.code}</td>
-                                    <td>${enrollment.subject.name}</td>
+                                    <td class="eID">${enrollment.id}</td>
+                                    <td class="subjectCode">${enrollment.subject.code}</td>
+                                    <td class="subjectName">${enrollment.subject.name}</td>
                                     <td>${enrollment.subject.units}</td>
-                                    <td>${enrollment.instructor}</td>
+                                    <td class="instructor">${enrollment.instructor}</td>
                                     <td> 
-                                        <a href="#" onclick="deleteSubject(${enrollment.id})" style="font-size: 1.5rem; color: red;">
+                                     <a href="#"id="editEnrollment"  style="font-size: 1.5rem; color: green; text-decoration: none;">
+                                          <span class="mdi mdi-square-edit-outline"></span>
+                                        </a>
+                                        <a href="#"  onclick="deleteSubject(${enrollment.id})"style="font-size: 1.5rem; color: red; text-decoration: none;">
                                             <span class="mdi mdi-trash-can-outline"></span>
                                         </a>
+                                       
                                     </td>
+                              
                                 </tr>
                             `);
                         });
                     } else {
                         $("#enrollmentList").html(
-                            "<tr><td colspan='6'>No enrollments found</td></tr>"
+                            "<tr><td colspan='5' style='text-align:center'>Student not yet enrolled to any subject</td></tr>"
                         );
                     }
                 }
@@ -57,6 +58,4 @@ $(document).ready(function () {
             },
         });
     });
-
-    // Clear data only when the modal is fully hidden
 });

@@ -1,5 +1,5 @@
 @extends('layouts.mainlayout')
-
+@section('title', 'Student List')
 @section('content')
 
 <div class="main-panel">
@@ -67,7 +67,6 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 @if(\Session::has('success'))
 <script>
     Swal.fire({
@@ -88,7 +87,6 @@
     });
 </script>
 @endif
-
 <script>
     function deleteStudent(id) {
 
@@ -97,7 +95,6 @@
             text: "Are you sure you want to delete this student?",
             icon: "warning",
             showCancelButton: true,
-
         }).then((result) => {
             if (result.isConfirmed) {
                 const form = document.getElementById("IdToDelete-" + id)
@@ -105,11 +102,9 @@
                 form.submit();
             }
         });
-
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script src="assets/js/studentModalHandler.js"></script>
 <script src="assets/js/enrollmentModalHandler.js"></script>
 <script src="assets/js/studentInfoModalHandler.js"></script>

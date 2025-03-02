@@ -17,16 +17,13 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         if (Auth::guard('web')->check()) {
-            return redirect()->route('dashboard'); // Redirect users
+            return redirect()->route('dashboard');
         }
-
         if (Auth::guard('student')->check()) {
-            return redirect()->route('student.dashboard'); // Redirect students
+            return redirect()->route('student.dashboard');
         }
-
-        return view('auth.login'); // Show login page only if no one is logged in
+        return view('auth.login');
     }
-
 
     /**
      * Handle an incoming authentication request.

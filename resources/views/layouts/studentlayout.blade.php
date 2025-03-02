@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin2 </title>
+    <title>@yield('title')</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../assets/vendors/feather/feather.css">
     <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
@@ -34,11 +34,8 @@
                     </button>
                 </div>
                 <div>
-                    <a class="navbar-brand brand-logo" href="index.html">
-                        <img src="../assets/images/logo.svg" alt="logo" />
-                    </a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html">
-                        <img src="../assets/images/logo-mini.svg" alt="logo" />
+                    <a class="navbar-brand brand-logo" href="/dashboard">
+                        <p style="padding: 0;margin-bottom:6px; font-size: 1em; font-weight:bold; color:blue">Student</p>
                     </a>
                 </div>
             </div>

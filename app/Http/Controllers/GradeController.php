@@ -42,7 +42,6 @@ class GradeController extends Controller
             ->update(['grade_id' => $grade->id]);
         return redirect('students')->with('success', 'Student graded Successfully');
     }
-
     /**
      * Display the specified resource.
      */
@@ -52,8 +51,6 @@ class GradeController extends Controller
 
         return response()->json($grades);
     }
-
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -67,7 +64,6 @@ class GradeController extends Controller
      */
     public function update(UpdateGradeRequest $request, Grade $grade)
     {
-
         $validated = $request->validated();
         if ($validated['grade'] > 3) {
             $validated['status'] = 'Failed';
@@ -80,10 +76,7 @@ class GradeController extends Controller
     }
     public function destroy(Grade $grade)
     {
-        // Step 1: Remove the grade_id from enrollments
         Enrollment::where('grade_id', $grade->id)->update(['grade_id' => null]);
-
-        // Step 2: Delete the grade from the grades table
         $grade->delete();
         return redirect('students')->with('success', 'Student grade deleted Successfully ');
     }

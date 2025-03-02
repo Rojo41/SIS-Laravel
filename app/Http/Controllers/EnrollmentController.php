@@ -68,17 +68,19 @@ class EnrollmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Enrollment $enrollment)
-    {
-        //
-    }
+    public function edit(Enrollment $enrollment) {}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEnrollmentRequest $request, Enrollment $enrollment)
+    public function update(UpdateEnrollmentRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $enrollment = Enrollment::findOrFail($id);
+        $enrollment->update([
+            'instructor' => $validated['instructor']
+        ]);
+        return redirect()->back()->with('success', 'Student enrollment successfully updated!');
     }
 
     /**
