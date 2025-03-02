@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
+use App\Models\Enrollment;
 
 class SubjectController extends Controller
 {
@@ -71,6 +72,10 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
+        $enroll = Enrollment::where("student_id", $subject->id)->get();
+        if ($enroll) {
+            return redirect('subjects')->with('error', 'There are students currently enrolled to this subject!');
+        }
         $subject->delete();
         return redirect('subjects')->with('success', 'Subject Deleted Successfully');
     }

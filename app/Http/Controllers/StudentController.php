@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Enrollment;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
@@ -15,21 +16,13 @@ class StudentController extends Controller
         return view('students.index', ['studentList' => $students]);
     }
 
-    public function create()
-    {
-        //
-    }
+    public function create() {}
     public function store(StoreStudentRequest $request)
     {
-        try {
-            $validated = $request->validated();
-            $validated['password'] = Hash::make('password123');
-            Student::create($validated);
-            return redirect('students')->with('success', 'Student added Successfully');
-        } catch (\Exception $e) {
-            dd($e);
-            return redirect()->back()->with('error', "Something went wrong!");
-        }
+        $validated = $request->validated();
+        $validated['password'] = Hash::make('password123');
+        Student::create($validated);
+        return redirect('students')->with('success', 'Student added Successfully');
     }
     public function show(Student $student)
     {
@@ -39,17 +32,16 @@ class StudentController extends Controller
 
     public function update(UpdateStudentRequest $request, Student $student)
     {
-
-        try {
-            $validated = $request->validated();
-            $student->update($validated);
-            return redirect()->back()->with('success', 'Student updated successfully!');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', "Something went wrong!");
-        }
+        $validated = $request->validated();
+        $student->update($validated);
+        return redirect()->back()->with('success', 'Student updated successfully!');
     }
     public function destroy(Student $student)
     {
+        $enrolled = Enrollment::where("student_id", $student->id)->get();
+        if ($enrolled) {
+            return redirect('students')->with('error', 'Student is currently enrolled and cannot be deleted!');
+        }
         $student->delete();
         return redirect('students')->with('success', 'Student Deleted Successfully');
     }

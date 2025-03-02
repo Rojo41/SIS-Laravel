@@ -9,7 +9,8 @@
                 <div class="mb-3 pr-3 d-flex justify-content-between align-items-center">
                     <h3 class="welcome-text text-dark font-weight-bold m-0">Student table</span></h3>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#triggerModal"
-                        data-id="" data-name="" data-email="" data-action="{{ route('students.store') }}" data-method="POST" data-mode="add">Add student</button>
+                        data-id="" data-name="" data-email="" data-action="{{ route('students.store') }}" data-method="POST" data-mode="add">
+                        <span class="mdi mdi-plus" style="margin-right: 5px; font-size: 1.2em;"></span>Add student</button>
                 </div>
                 <div style="height: calc(100vh - 210px); width: 100%; overflow-y: scroll; position:relative">
                     <table class="table table-hover position-relative ">
@@ -82,6 +83,16 @@
     Swal.fire({
         title: "Validation Error",
         html: "{!! implode('<br>', $errors->all()) !!}",
+        icon: "error",
+        confirmButtonText: "OK"
+    });
+</script>
+@endif
+@if (session('error'))
+<script>
+    Swal.fire({
+        title: "Something went wrong",
+        text: "{{ session('error') }}",
         icon: "error",
         confirmButtonText: "OK"
     });
