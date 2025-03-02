@@ -62,7 +62,6 @@
                             @endif
                         </tbody>
                     </table>
-
                     @if ($totalUnits > 0)
                     <div class="mt-3">
                         <h4 class="text-dark font-weight-bold">General Weighted Average (GWA):
@@ -71,8 +70,6 @@
                     </div>
                     @endif
                 </div>
-
-
             </div>
         </div>
     </div>
