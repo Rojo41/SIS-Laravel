@@ -8,7 +8,7 @@
                 <div class="mb-3 pr-3 d-flex justify-content-between align-items-center">
                     <h3 class="welcome-text text-dark font-weight-bold m-0">Grades Table</h3>
                 </div>
-                <div style="height: calc(100vh - 210px); width: 100%; overflow-y: scroll; position:relative">
+                <div style="height: calc(100vh - 230px); width: 100%; overflow-y: scroll; position:relative">
                     <table class="table table-hover position-relative">
                         <colgroup>
                             <col width="15%">
@@ -62,14 +62,15 @@
                             @endif
                         </tbody>
                     </table>
-                    @if ($totalUnits > 0)
-                    <div class="mt-3">
-                        <h4 class="text-dark font-weight-bold">General Weighted Average (GWA):
-                            <span class="text-primary">{{ number_format($totalWeightedGrade / $totalUnits, 2) }}</span>
-                        </h4>
-                    </div>
-                    @endif
+
                 </div>
+                @if ($totalUnits > 0)
+                <div class="mt-3">
+                    <h4 class="text-dark font-weight-bold">General Weighted Average (GWA):
+                        <span class="text-primary">{{ number_format($totalWeightedGrade / $totalUnits, 2) }}</span>
+                    </h4>
+                </div>
+                @endif
             </div>
         </div>
     </div>

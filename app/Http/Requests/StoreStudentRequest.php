@@ -23,9 +23,21 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:students,email'],
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                'unique:students,email',
+                'regex:/^[a-zA-Z0-9._%+-]+@student\.buksu\.edu\.ph$/'
+            ],
             'address' => ['required', 'string', 'max:255'],
-            'course' => ['required', 'string', 'max:255'],
+            'course' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^BS.*/',
+            ],
+
         ];
     }
 }

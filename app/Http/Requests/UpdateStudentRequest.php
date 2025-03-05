@@ -26,7 +26,12 @@ class UpdateStudentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'course' => ['required', 'string', 'max:255'],
+            'course' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^BS.*/',
+            ],
         ];
     }
 }

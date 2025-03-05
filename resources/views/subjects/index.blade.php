@@ -9,7 +9,7 @@
                 <div class="mb-3 pr-3 d-flex justify-content-between align-items-center">
                     <h3 class="welcome-text text-dark font-weight-bold m-0">Subject table</span></h3>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#triggerModalSubject"
-                        data-id="" data-name="" data-code="" data-units="" data-action="{{ route('subjects.store') }}" data-method="POST" data-mode="add">Add Subject</button>
+                        data-id="" data-name="" data-code="" data-units="" data-action="{{ route('subjects.store') }}" data-method="POST" data-mode="add"> <span class="mdi mdi-plus" style="margin-right: 5px; font-size: 1.2em;"></span>Add Subject</button>
                 </div>
                 <div style="height: calc(100vh - 210px); width: 100%; overflow-y: scroll; position:relative">
                     <table class="table table-hover position-relative ">

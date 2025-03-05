@@ -22,7 +22,7 @@ class StoreSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:5', 'unique:subjects,code'],
+            'code' => ['required', 'string', 'max:5', 'unique:subjects,code', 'regex:/^IT\d{3}$/'],
             'name' => ['required', 'string', 'max:255'],
             'units' => ['required', 'integer', 'between:2,3'],
         ];

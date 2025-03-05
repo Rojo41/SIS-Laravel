@@ -17,8 +17,30 @@ class SubjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'code' => fake()->unique()->word(),
-            'name' => fake()->name(),
+            'code' => 'IT' . fake()->unique()->numerify('###'),
+            'name' => fake()->randomElement([
+                'Mathematics',
+                'Physics',
+                'Chemistry',
+                'Biology',
+                'Computer Science',
+                'Data Structures',
+                'Operating Systems',
+                'Database Systems',
+                'Software Engineering',
+                'Networking',
+                'Artificial Intelligence',
+                'Machine Learning',
+                'Cybersecurity',
+                'Web Development',
+                'Mobile App Development',
+                'Accounting',
+                'Business Management',
+                'Marketing',
+                'Economics',
+                'Statistics'
+            ]),
+
             'units' => fake()->numberBetween(2, 3),
         ];
     }

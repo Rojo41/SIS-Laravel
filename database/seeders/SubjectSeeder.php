@@ -13,10 +13,6 @@ class SubjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Subject::factory(10)->create([
-            'code' => fn() => fake()->unique()->word(),
-            'name' => fn() => fake()->name(),
-            'units' => fn() => fake()->numberBetween(2, 3),
-        ]);
+        Subject::factory(10)->create();
     }
 }

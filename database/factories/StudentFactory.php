@@ -24,9 +24,9 @@ class StudentFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => fake()->unique()->userName() . '@student.buksu.edu.ph',
             'address' => fake()->address(),
-            'course' => fake()->word(),
+            'course' => fake()->randomElement(['BSIT', 'BSEMC', 'BSAT', 'BSFT']),
             'password' => static::$password ??= Hash::make('password123'),
         ];
     }

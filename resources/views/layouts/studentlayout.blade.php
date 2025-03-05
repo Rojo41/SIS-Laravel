@@ -127,7 +127,7 @@
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <img class="img-xs rounded-circle" src="../assets/images/faces/face8.jpg" alt="Profile image"> </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown  p-2" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
                                 <img class="img-md rounded-circle" src="../assets/images/faces/face8.jpg" alt="Profile image">
                                 <p class="mb-1 mt-3 fw-semibold">{{ auth()->user()->name }}</p>
@@ -135,12 +135,8 @@
                             </div>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-
-                                <x-responsive-nav-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-responsive-nav-link>
+                                <button type="submit" class="btn btn-primary d-flex align-items-center justify-content-center" style="width: 100%; max-height:35px">
+                                    <span class=" mdi mdi-logout me-2" style="font-size: 1.1em"></span>Log out</button>
                             </form>
                         </div>
                     </li>

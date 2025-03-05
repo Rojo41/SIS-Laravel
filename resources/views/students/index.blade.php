@@ -1,7 +1,6 @@
 @extends('layouts.mainlayout')
 @section('title', 'Student List')
 @section('content')
-
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
